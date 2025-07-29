@@ -2,13 +2,20 @@ name: Cypress Tests
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
 
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        containers: [1, 2]   # Run tests in 2 parallel containers (adjust as needed)
 
     steps:
       - name: Checkout Repository
@@ -31,7 +38,12 @@ jobs:
         run: npm ci
 
       - name: Run Cypress Tests
-        run: npx cypress run --browser chrome --headless --reporter spec
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          headless: true
+          record: false
+          parallel: true
 
       - name: Upload Cypress Videos
         if: always()
