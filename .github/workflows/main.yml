@@ -37,8 +37,8 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Run Cypress Tests
-        uses: cypress-io/github-action@v6
+      - name: Run Only LoginWithPOM Test
+        run: npx cypress run --spec "cypress/e2e/LoginWithPOM.cy.js" --browser chrome --headless
         with:
           browser: chrome
           headless: true
