@@ -1,0 +1,30 @@
+23-11-2023:
+EPFO UID : 101336919885
+EPFO PASSWORD : Kagati@12345
+
+Please find the details below and attached resume for your reference.
+Name : Kagati Bhargav Pavan Kumar
+Skill : Manual and Automation Testing Engineer
+Cell Number : 8179767255
+Email Address : kbarghavpavankumar@gmail.com
+Current Company : Terralogic 
+Total Experience : 3.5+
+Current CTC : 4L
+Expected CTC : 8L
+LWD : 22-11-2023
+Current Location : Bangalore 
+Offers in hand : 2
+Education : B'Tech
+
+
+06-12-2023:
+1)Python with Selenium
+2)BDD
+3)Rest Assured API 
+Both from SDET
+
+14-12-2023:
+HPE:
+1)Networking Concepts and tools
+2)Python
+3)Cypress
