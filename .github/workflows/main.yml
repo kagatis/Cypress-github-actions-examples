@@ -1,6 +1,12 @@
 name: Cypress Tests
 
 on:
+  workflow_dispatch:
+    inputs:
+      testfile:
+        description: 'Path to Cypress test file (leave empty to run all tests)'
+        required: false
+        default: ''
   push:
     branches:
       - master
@@ -11,11 +17,6 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        containers: [1, 2]   # Run tests in 2 parallel containers (adjust as needed)
 
     steps:
       - name: Checkout Repository
@@ -38,12 +39,14 @@ jobs:
         run: npm ci
 
       - name: Run Cypress Tests
-        uses: cypress-io/github-action@v6
-        with:
-          browser: chrome
-          headless: true
-          record: false
-          parallel: true
+        run: |
+          if [ -z "${{ github.event.inputs.testfile }}" ]; then
+            echo "🔹 Running all Cypress tests..."
+            npx cypress run --browser chrome --headless
+          else
+            echo "🔹 Running specific Cypress test file: ${{ github.event.inputs.testfile }}"
+            npx cypress run --spec "${{ github.event.inputs.testfile }}" --browser chrome --headless
+          fi
 
       - name: Upload Cypress Videos
         if: always()
